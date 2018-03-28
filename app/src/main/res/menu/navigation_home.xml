@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_news"
+        android:enabled="true"
+        android:icon="@drawable/ic_news"
+        android:title="@string/menu_item_news" />
+
+    <item
+        android:id="@+id/navigation_events"
+        android:enabled="true"
+        android:icon="@drawable/ic_events"
+        android:title="@string/menu_item_events" />
+
+    <item
+        android:id="@+id/navigation_questions"
+        android:enabled="true"
+        android:title="@string/menu_item_question" />
+
+    <item
+        android:id="@+id/navigation_schedule"
+        android:enabled="true"
+        android:icon="@drawable/ic_schedule"
+        android:title="@string/menu_item_schedule" />
+
+    <item
+        android:id="@+id/navigation_profile"
+        android:enabled="true"
+        android:icon="@drawable/ic_profile"
+        android:title="@string/menu_item_profile" />
+</menu>

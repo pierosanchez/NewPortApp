@@ -1,0 +1,37 @@
+<vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportHeight="12"
+    android:viewportWidth="12">
+
+    <!-- Translate the canvas, then rotate, then scale, then draw the play icon. -->
+    <group android:scaleX="1.5" android:pivotX="6" android:pivotY="6">
+        <group android:rotation="90" android:pivotX="6" android:pivotY="6">
+            <group android:translateX="2">
+                <path android:name="play_path"/>
+            </group>
+        </group>
+    </group>
+
+    <!-- Rotate the canvas, then translate, then scale, then draw the pause icon. -->
+    <group android:scaleX="1.5" android:pivotX="6" android:pivotY="6">
+        <group
+            android:rotation="90" android:pivotX="6" android:pivotY="6"
+            android:translateX="2">
+            <path android:name="pause_path"/>
+        </group>
+    </group>
+
+    <!-- Scale the canvas, then rotate, then translate, then draw the record icon. -->
+    <group android:translateX="2">
+        <group
+            android:rotation="90"
+            android:scaleX="1.5"
+            android:pivotX="6"
+            android:pivotY="6">
+            <path android:name="record_path"/>
+        </group>
+    </group>
+
+</vector>

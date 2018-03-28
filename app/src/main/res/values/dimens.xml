@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="width_lines_card">2dp</dimen>
+    <dimen name="space_between_elements_home">15dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="z_card">100dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+
+    <dimen name="standard_75">60dp</dimen>
+    <dimen name="standard_120">120dp</dimen>
+</resources>

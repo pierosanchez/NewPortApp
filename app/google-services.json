@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "673050516073",
+    "firebase_url": "https://newportapp1.firebaseio.com",
+    "project_id": "newportapp1",
+    "storage_bucket": "newportapp1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:673050516073:android:3f37fb4d51b5908f",
+        "android_client_info": {
+          "package_name": "com.newport.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "673050516073-81marm2pi0khup7fi526vi0oo8erqnte.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQoq76Xuk3kC0OwnkfVjSjz97MJPy4-yg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

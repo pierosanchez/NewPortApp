@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title_dialog_verify_account"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/choice_option_dialog" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center_horizontal">
+
+        <RadioButton
+            android:id="@+id/rdbPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/colorPrimary"
+            android:text="*** *** 833"
+            android:textColor="@color/colorPrimary" />
+
+        <RadioButton
+            android:id="@+id/rdbEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:buttonTint="@color/colorPrimary"
+            android:text="an********@gmail.com"
+            android:textColor="@color/colorPrimary" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btnVerifyDialog"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/yellow_square_button"
+        android:text="@string/send_verify_dialog"
+        android:textColor="@android:color/white" />
+</LinearLayout>
