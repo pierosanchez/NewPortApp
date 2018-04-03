@@ -42,8 +42,10 @@ android {
         debug {
             buildConfigField "String", "HEADER", "\"Bearer 3FSpMxRMbZfDbq2s5qqVmGWUvf9K8kPYbsD6aPTTaauy\""
 
-            buildConfigField "String", "URL_BASE", "\"http://208.68.36.216/new/public/api/\""
-            buildConfigField "String", "URL_STORAGE", "\"http://208.68.36.216/new/public/storage/\""
+            //buildConfigField "String", "URL_BASE", "\"http://208.68.36.216/new/public/api/\""
+            //buildConfigField "String", "URL_STORAGE", "\"http://208.68.36.216/new/public/storage/\""
+            buildConfigField "String", "URL_BASE", "\"http://208.68.36.216/api/\""
+            buildConfigField "String", "URL_STORAGE", "\"http://208.68.36.216/storage/\""
             buildConfigField "String", "URL_DOCS_VIEW", "\"https://docs.google.com/gview?&url=\""
 
             buildConfigField "String", "LOGIN", "\"login\""

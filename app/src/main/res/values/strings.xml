@@ -34,6 +34,7 @@
     <string name="perfil_fragment">Perfil</string>
     <string name="surname_hint">Apellido</string>
     <string name="birthday_hint">Cumpleaños</string>
+    <string name="logout_app_button">CERRAR SESIÓN</string>
     <string name="area_hint">Área</string>
     <string name="position_hint">Cargo</string>
     <string name="date_join_enterprise_hint">Fecha de ingreso a la empresa</string>

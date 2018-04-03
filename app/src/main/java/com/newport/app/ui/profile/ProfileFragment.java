@@ -2,6 +2,7 @@ package com.newport.app.ui.profile;
 
 import android.app.DatePickerDialog;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -20,6 +22,8 @@ import android.widget.TextView;
 import com.newport.app.NewPortApplication;
 import com.newport.app.R;
 import com.newport.app.data.models.response.UserResponse;
+import com.newport.app.ui.SplashActivity;
+import com.newport.app.ui.login.LoginActivity;
 import com.newport.app.util.PreferencesHeper;
 import com.newport.app.widget.DatePickerFragment;
 
@@ -39,6 +43,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener, P
     private TextView lblPosition;
     private TextView lblDateAdmission;
     private TextView lblCarnetSanidad;
+
+    private Button btnLogout;
 
     private ProfileLateDaysAdapter profileLateDaysAdapter;
     private ProfileLateLaunchAdapter profileLateLaunchAdapter;
@@ -65,6 +71,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener, P
     }
 
     private void init() {
+        btnLogout = rootView.findViewById(R.id.btnLogout);
         prgProfile = rootView.findViewById(R.id.prgProfile);
         crdProfile = rootView.findViewById(R.id.crdProfile);
         nstScrollProfile = rootView.findViewById(R.id.nstScrollProfile);
@@ -75,6 +82,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener, P
         lblDateAdmission = rootView.findViewById(R.id.lblDateAdmission);
         lblCarnetSanidad = rootView.findViewById(R.id.lblCarnetSanidad);
         lblCarnetSanidad.setOnClickListener(this);
+        btnLogout.setOnClickListener(this);
 
         profileLateDaysAdapter = new ProfileLateDaysAdapter();
         profileLateLaunchAdapter = new ProfileLateLaunchAdapter();
@@ -109,19 +117,28 @@ public class ProfileFragment extends Fragment implements View.OnClickListener, P
     @Override
     public void onClick(View view) {
 
-        DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+        if (view.getId() == R.id.lblCarnetSanidad) {
+            DatePickerFragment newFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker datePicker, int year, int month, int day) {
 
-                PreferencesHeper.setDayExpiration(NewPortApplication.getAppContext(), day);
-                PreferencesHeper.setMonthExpiration(NewPortApplication.getAppContext(), month);
-                PreferencesHeper.setYearExpiration(NewPortApplication.getAppContext(), year);
+                    PreferencesHeper.setDayExpiration(NewPortApplication.getAppContext(), day);
+                    PreferencesHeper.setMonthExpiration(NewPortApplication.getAppContext(), month);
+                    PreferencesHeper.setYearExpiration(NewPortApplication.getAppContext(), year);
 
-                final String selectedDate = day + " / " + (month + 1) + " / " + year;
-                lblCarnetSanidad.setText(selectedDate);
-            }
-        });
-        newFragment.show(getFragmentManager(), "datePicker");
+                    final String selectedDate = day + " / " + (month + 1) + " / " + year;
+                    lblCarnetSanidad.setText(selectedDate);
+                }
+            });
+            newFragment.show(getFragmentManager(), "datePicker");
+        } else if (view.getId() == R.id.btnLogout){
+            PreferencesHeper.setDniUser(NewPortApplication.getAppContext(), "");
+            PreferencesHeper.setSapCodeUser(NewPortApplication.getAppContext(), "");
+            Intent intent = new Intent(NewPortApplication.getAppContext(), SplashActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            getActivity().finish();
+        }
     }
 
     @Override
@@ -138,7 +155,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener, P
     public void showUserInfo(UserResponse userResponse) {
         lblNamePerfil.setText(userResponse.getName());
 
-        Log.d("ProfileFragmentUsername", userResponse.getName());
         lblCodeSapPerfil.setText(String.valueOf(userResponse.getSap_code()));
         lblArea.setText(userResponse.getArea());
         lblPosition.setText(userResponse.getPosition());

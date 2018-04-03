@@ -197,9 +197,19 @@
                         android:nestedScrollingEnabled="false"
                         app:layoutManager="android.support.v7.widget.LinearLayoutManager"
                         tools:listitem="@layout/item_lates" />
+
+                    <Button
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/logout_app_button"
+                        android:id="@+id/btnLogout"
+                        android:textColor="@android:color/white"
+                        android:background="@drawable/yellow_square_button"/>
                 </LinearLayout>
 
             </LinearLayout>
+
         </android.support.v4.widget.NestedScrollView>
 
     </LinearLayout>
