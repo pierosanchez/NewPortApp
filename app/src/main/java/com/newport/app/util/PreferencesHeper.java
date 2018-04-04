@@ -27,6 +27,8 @@ public class PreferencesHeper {
     private static final String KEY_MONTH_EXPIRATION = "user_month_expiration";
     private static final String KEY_YEAR_EXPIRATION = "user_year_expiration";
 
+    private static final String KEY_DEVICE_TOKEN = "device_token";
+
     private static SharedPreferences sharedPreferences;
     private static SharedPreferences.Editor editor;
 
@@ -163,4 +165,17 @@ public class PreferencesHeper {
         initSessionManager(context);
         return sharedPreferences.getInt(KEY_YEAR_EXPIRATION, 0);
     }
+
+    //Token del dispositivo
+    public static void setKeyDeviceToken(Context context, String token){
+        initSessionManager(context);
+        editor.putString(KEY_DEVICE_TOKEN, token);
+        editor.commit();
+    }
+
+    public static String getKeyDeviceToken(Context context){
+        initSessionManager(context);
+        return sharedPreferences.getString(KEY_DEVICE_TOKEN, "");
+    }
+
 }

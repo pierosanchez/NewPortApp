@@ -2,6 +2,7 @@ package com.newport.app.ui.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -9,10 +10,13 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.newport.app.NewPortApplication;
 import com.newport.app.R;
 import com.newport.app.ui.BaseActivity;
 import com.newport.app.ui.main.MainActivity;
 import com.newport.app.util.Helper;
+import com.newport.app.util.PreferencesHeper;
 
 public class LoginActivity extends BaseActivity implements LoginContract.View {
 
@@ -41,6 +45,8 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
         btnAccess = findViewById(R.id.btnAccess);
         progressBar = findViewById(R.id.progressBar);
         /*edtSap = findViewById(R.id.edtSap);*/
+
+        Log.d("LoginActivity", "el token es: " + FirebaseInstanceId.getInstance().getToken());
     }
 
     public void accessAndValidate(View view) {
@@ -53,6 +59,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
 
     private void callVerifyAccountDialog() {
 
+        PreferencesHeper.setKeyDeviceToken(NewPortApplication.getAppContext(), FirebaseInstanceId.getInstance().getToken());
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(intent);
         finish();

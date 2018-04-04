@@ -134,6 +134,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener, P
         } else if (view.getId() == R.id.btnLogout){
             PreferencesHeper.setDniUser(NewPortApplication.getAppContext(), "");
             PreferencesHeper.setSapCodeUser(NewPortApplication.getAppContext(), "");
+            PreferencesHeper.setKeyDeviceToken(NewPortApplication.getAppContext(), "");
             Intent intent = new Intent(NewPortApplication.getAppContext(), SplashActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
