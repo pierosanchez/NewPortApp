@@ -26,5 +26,7 @@ public class Constant {
 
     public static final int DNI_LENGTH= 8;
 
+    public static final String API_KEY = "AIzaSyCPvEo33olMG3Ctgu7AHckSpelDCB86RIc";
+
     public static final String HEADER_AUTHORIZATION = "Authorization: " + BuildConfig.HEADER;
 }

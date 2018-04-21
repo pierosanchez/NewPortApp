@@ -42,6 +42,7 @@ public class NewResponse {
     private String subcategory_name;
     private String status_name;
     private String image_url;
+    private String youtubeVideoId;
 
     public int getId() {
         return id;
@@ -153,5 +154,13 @@ public class NewResponse {
 
     public void setImage_url(String image_url) {
         this.image_url = image_url;
+    }
+
+    public String getYoutubeVideoId() {
+        return youtubeVideoId;
+    }
+
+    public void setYoutubeVideoId(String youtubeVideoId) {
+        this.youtubeVideoId = youtubeVideoId;
     }
 }

@@ -216,5 +216,4 @@ public class MainActivity extends BaseActivity implements
         onNavigationItemSelected(menuItem);
         menuItem.setChecked(true);
     }
-
 }

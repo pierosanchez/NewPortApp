@@ -1,6 +1,7 @@
 package com.newport.app.ui.newdetail;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.google.firebase.perf.metrics.AddTrace;
 import com.newport.app.NewPortApplication;

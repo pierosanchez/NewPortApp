@@ -2,23 +2,31 @@ package com.newport.app.ui.newdetail;
 
 import android.annotation.SuppressLint;
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerFragment;
 import com.newport.app.NewPortApplication;
 import com.newport.app.R;
 import com.newport.app.data.models.response.NewResponse;
@@ -30,6 +38,7 @@ import com.squareup.picasso.Picasso;
 public class NewDetailFragment extends Fragment implements NewDetailContract.View {
 
     private static final String ARG_PARAM1 = "idDetailEvent";
+    private static final String VIDEO_ID = "nNoyT7DZzmQ";
 
     private NewDetailPresenter newDetailPresenter;
 
@@ -44,6 +53,8 @@ public class NewDetailFragment extends Fragment implements NewDetailContract.Vie
     private WebView wbvBodyDetailNew;
     private FloatingActionButton fabDetailNew;
     private CoordinatorLayout crdNewDetail;
+    private CardView cvEventDetail;
+    private FrameLayout youtube_player;
 
     public NewDetailFragment() {
         // Required empty public constructor
@@ -82,11 +93,16 @@ public class NewDetailFragment extends Fragment implements NewDetailContract.Vie
         imgDetailNew = rootView.findViewById(R.id.imgDetailNew);
         lblTitleDetailNew = rootView.findViewById(R.id.lblTitleDetailNew);
         wbvBodyDetailNew = rootView.findViewById(R.id.wbvBodyDetailNew);
+        cvEventDetail = rootView.findViewById(R.id.cvEventDetail);
 
         fabDetailNew = rootView.findViewById(R.id.fabDetailNew);
 
+        youtube_player = rootView.findViewById(R.id.youtube_player);
+
         newDetailPresenter = new NewDetailPresenter();
         newDetailPresenter.attachedView(this);
+
+        cvEventDetail.bringToFront();
     }
 
     @Override
@@ -135,6 +151,14 @@ public class NewDetailFragment extends Fragment implements NewDetailContract.Vie
             });
         }
 
+        /** Initializating Youtube Player View **/
+        if (newResponse.getId() != 9) {
+            youtube_player.setVisibility(View.GONE);
+            return;
+        }
+
+        loadYoutubeVideo(VIDEO_ID);
+
     }
 
     private void callGalleryNew(int uploadPhotos) {
@@ -162,5 +186,33 @@ public class NewDetailFragment extends Fragment implements NewDetailContract.Vie
                 });
 
         snackbar.show();
+    }
+
+    /**
+     * All stuffs about Youtube View
+     **/
+
+    private void loadYoutubeVideo(final String youtubeVideoId) {
+        YouTubePlayerFragment youTubePlayerFragment = new YouTubePlayerFragment();
+
+        youTubePlayerFragment.initialize(Constant.API_KEY, new YouTubePlayer.OnInitializedListener() {
+            @Override
+            public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
+                /** Start Buffering **/
+                if (!b) {
+                    youTubePlayer.cueVideo(youtubeVideoId);
+                }
+            }
+
+            @Override
+            public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+                Toast.makeText(NewPortApplication.getAppContext(), "Falló al inicializar el video", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.youtube_player, youTubePlayerFragment);
+        fragmentTransaction.commit();
     }
 }
